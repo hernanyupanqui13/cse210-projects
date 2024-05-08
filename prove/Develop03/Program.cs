@@ -1,3 +1,10 @@
+/*
+To exceed the requirements I made the program to hide only the unhidden words. 
+I also added a feature to hide a specific number of words. 
+The user can decide how many words he wants to hide.
+
+*/
+
 using System;
 
 class Program
