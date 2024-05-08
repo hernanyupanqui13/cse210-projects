@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Reference reference1 = new Reference("Genesis", 1, 1);
-        Scripture scripture1 = new Scripture(reference1, "Y puso Adán nombre a toda bestia y ave de los cielos y a todo animal del campo; mas para Adán no se halló ayuda que fuese idónea para él. Y Jehová Dios hizo caer un sueño profundo sobre Adán, y este se quedó dormido. Entonces tomó una de sus costillas y cerró la carne en su lugar;");
+        Reference reference1 = new Reference("Helaman", 5, 12);
+        Scripture scripture1 = new Scripture(reference1, "Y ahora bien, recordad, hijos míos, recordad que es sobre la aroca de nuestro Redentor, el cual es Cristo, el Hijo de Dios, donde debéis establecer vuestro bfundamento, para que cuando el diablo lance sus impetuosos vientos, sí, sus dardos en el torbellino, sí, cuando todo su granizo y furiosa ctormenta os azoten, esto no tenga poder para arrastraros al abismo de miseria y angustia sin fin, a causa de la roca sobre la cual estáis edificados, que es un fundamento seguro, un fundamento sobre el cual, si los hombres edifican, no caerán");
         Console.Clear();
         Console.WriteLine(scripture1.GetDisplayText());
         Console.WriteLine();
