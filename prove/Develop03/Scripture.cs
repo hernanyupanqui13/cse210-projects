@@ -20,7 +20,7 @@ class Scripture {
         }
     }
 
-    public void HideRandomWords()
+    public void HideRandomWords(int numberOfWordsToHide)
     {
         // First we create a list of indexes, and here we will have only unhidden words indexes
         List<int> indexesOfUnhiddenWords = this._words
@@ -29,8 +29,9 @@ class Scripture {
             .Select(y => y.index)
             .ToList();
 
-        // If there is less or equal to 3 unhidden words, we will hide all of them
-        if(indexesOfUnhiddenWords.Count <= 3) 
+        // If there is less or equal to "numberOfWordsToHide" unhidden words, we will hide all of them
+        // For example, if there are only 2 unhidden words and we want to hide 3, we will hide all of them without random picking
+        if(indexesOfUnhiddenWords.Count <= numberOfWordsToHide) 
         {
             foreach (int index in indexesOfUnhiddenWords)
             {
@@ -43,10 +44,10 @@ class Scripture {
         
 
         // This is another list that will contain the random indexes of indexesOfUnhiddenWords
-        // We will use this list to pick up random uhidden words (indexesOfUnhiddenWords)
+        // We will use this list to pick up random unhidden words (indexesOfUnhiddenWords)
         List<int> rdmIndexes = new List<int>();
 
-        while (rdmIndexes.Count < 3)
+        while (rdmIndexes.Count < numberOfWordsToHide)
         {
             int randomIndex = _randomGen.Next(0, indexesOfUnhiddenWords.Count);
 
@@ -80,5 +81,10 @@ class Scripture {
 
         return $"{this._reference.GetDisplayText()} {listOfWordsAsString}";
         
+    }
+
+    public bool IsCompleteHidden()
+    {
+        return this._words.All(word => word.IsHidden());
     }
 }
