@@ -15,16 +15,17 @@ class Program
         switch (choice)
         {
             case "1":
-                Console.WriteLine("Starting breathing activity");
                 Console.Clear();
                 BreathingActivity breathingActivity = new BreathingActivity();
-                Console.Clear();
                 breathingActivity.Run();
                 breathingActivity.DisplayEndingMessage();
                 RunApp();
                 break;
             case "2":
-                Console.WriteLine("Starting reflecting activity");
+                Console.Clear();
+                ReflectingActivity reflectingActivity = new ReflectingActivity();
+                reflectingActivity.Run();
+                reflectingActivity.DisplayEndingMessage();
                 RunApp();
                 break;
             case "3":

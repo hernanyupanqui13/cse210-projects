@@ -7,11 +7,15 @@ public class ListingActivity : Activity
     {
         this._name = "Listing Activity";
         this._description = "This activity will help you reflect on your day by listing the things you did today.";
+        this.DisplayStartingMessage();
+
     }
 
     public void Run()
     {
+        this.GetReadyMessage();
 
+        
     }
 
     public void GetRandomPrompts()

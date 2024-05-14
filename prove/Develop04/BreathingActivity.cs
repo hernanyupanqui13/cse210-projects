@@ -9,10 +9,7 @@ public class BreathingActivity : Activity
 
     public void Run()
     {
-        Console.WriteLine("Get Ready...");
-        base.ShowSpinner(4);
-        Console.WriteLine();
-        Console.WriteLine();
+        this.GetReadyMessage();
 
         DateTime endTime = DateTime.Now.AddSeconds(this.GetDuration());
 

@@ -41,7 +41,7 @@ public class Activity
         this.ShowSpinner(2);
         Console.WriteLine();
         Console.WriteLine($"You have completed another {this._duration} seconds of the {this._name}");
-        this.ShowSpinner(2);
+        this.ShowSpinner(5);
 
     }
 
@@ -70,15 +70,15 @@ public class Activity
     {
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(seconds);
-        int startNumber = 1;
+        int secondsCounter = seconds;
         int countDownStep = 1000; // in miliseconds
 
         while (DateTime.Now < endTime) 
         {
-            Console.Write(startNumber);
+            Console.Write(secondsCounter);
             Thread.Sleep(countDownStep);
             Console.Write("\b \b");
-            startNumber++;
+            secondsCounter--;
         }
         
         Console.Write("\b \b");
@@ -86,5 +86,13 @@ public class Activity
 
     public int GetDuration() {
         return this._duration;
+    }
+
+    public void GetReadyMessage() {
+        Console.Clear();
+        Console.WriteLine("Get Ready...");
+        this.ShowSpinner(4);
+        Console.WriteLine();
+        Console.WriteLine();
     }
 }
