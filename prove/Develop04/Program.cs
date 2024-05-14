@@ -29,7 +29,10 @@ class Program
                 RunApp();
                 break;
             case "3":
-                Console.WriteLine("Starting listing activity");
+                Console.Clear();
+                ListingActivity listingActivity = new ListingActivity();
+                listingActivity.Run();
+                listingActivity.DisplayEndingMessage();
                 RunApp();
                 break;
             case "4":
