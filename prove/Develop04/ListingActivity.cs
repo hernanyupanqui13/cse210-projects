@@ -5,7 +5,8 @@ public class ListingActivity : Activity
 
     public ListingActivity()
     {
-
+        this._name = "Listing Activity";
+        this._description = "This activity will help you reflect on your day by listing the things you did today.";
     }
 
     public void Run()
