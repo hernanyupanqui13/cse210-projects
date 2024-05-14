@@ -1,3 +1,8 @@
+/*
+I checked if there was a empty list in the listing activity before saving it and counting as completed
+
+*/
+
 using System;
 
 class Program

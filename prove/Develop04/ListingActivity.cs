@@ -1,6 +1,7 @@
 public class ListingActivity : Activity
 {
     private Random _randomGen = new Random();
+    private List<string> _userList = new List<string>();
     private int _count;
     private List<string> _prompts = new List<string>() {
         "Who are people that you appreciate?",
@@ -27,11 +28,16 @@ public class ListingActivity : Activity
         this.ShowCountDown(5);
         DateTime endTime = DateTime.Now.AddSeconds(this.GetDuration());
         Console.WriteLine();
-        
+
         while (DateTime.Now < endTime) {
-            Console.Write("> ");
-            Console.ReadLine(); 
-            this._count++;
+            Console.Write("> "); 
+            string userInput= Console.ReadLine();
+            if (!string.IsNullOrEmpty(userInput)) {
+                this._userList.Add(userInput);
+                this._count++;
+            } else {
+                Console.WriteLine("You must enter something! Try again: ");
+            }
         }
         
         Console.WriteLine();
