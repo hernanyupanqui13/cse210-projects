@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 
 public class Activity
 {
