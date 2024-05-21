@@ -1,10 +1,10 @@
 public abstract class Goal {
     private string _shortName;
     private string _description;
-    private string _points;
+    private int _points;
 
 
-    public Goal(string name, string description, string points) {
+    public Goal(string name, string description, int points) {
         this._shortName = name;
         this._description = description;
         this._points = points;
@@ -15,7 +15,15 @@ public abstract class Goal {
     public abstract bool IsComplete();
 
     public string GetDetailsString() {
-        return "";
+        return $"{this._shortName} ({this._description})";
+    }
+
+    public string GetName() {
+        return this._shortName;
+    }
+
+    public virtual int GetPoints() {
+        return this._points;
     }
 
     public abstract string GetStringRepresentation();

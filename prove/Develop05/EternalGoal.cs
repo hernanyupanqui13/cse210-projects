@@ -1,6 +1,6 @@
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, string points) : base(name, description, points)
+    public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
 
     }
@@ -16,6 +16,6 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        throw new NotImplementedException();
+        // Since we never complete an Eternal Goal, we don't need to do anything here.
     }
 }
