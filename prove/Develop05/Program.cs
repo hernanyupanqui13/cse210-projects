@@ -1,6 +1,7 @@
 /*
--Added a way to avoid recwiving porint for the same goal twice.
-- Added a customized emssage when there are no goals saved or created
+- Added a customized message when there are no goals saved or created
+- I added the feature to edit all the types of goals.
+- I created a new class called userInputHandler to reduce the rebundancy when requesting user input
 */
 
 using System;

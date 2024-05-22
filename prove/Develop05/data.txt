@@ -1,5 +1,5 @@
-Score:1580
+Score:1633
 Simple Goal:First goal|First goal description|10|True
 Simple Goal:Second goal|Second goal description|20|True
 Simple Goal:Third goal|Third goal description|30|False
-Checklist Goal:Attend temple|Go every day|50|500|4|4
+Checklist Goal:Attend temple|Go every day|50|3|6|6

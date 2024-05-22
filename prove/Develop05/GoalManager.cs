@@ -1,7 +1,4 @@
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
 
 public class GoalManager {
     private List<Goal> _goals;
@@ -28,25 +25,28 @@ public class GoalManager {
                 case "1":
                     CreateGoal();
                     Console.WriteLine();
-
                     break;
                 case "2":
+                    EditGoal();
+                    Console.WriteLine();
+                    break;
+                case "3":
                     Console.WriteLine();
                     this.ListGoalDetails();
                     break;
-                case "3":
+                case "4":
                     SaveGoals();
                     Console.WriteLine();
                     break;
-                case "4":
+                case "5":
                     LoadGoals();
                     Console.WriteLine();
                     break;
-                case "5":
+                case "6":
                     RecordEvent();
                     Console.WriteLine();
                     break;
-                case "6":
+                case "7":
                     shouldQuit = true;
                     break;
                 default:
@@ -65,11 +65,12 @@ public class GoalManager {
         Console.WriteLine();
         Console.WriteLine("Menu Options");
         Console.WriteLine("  1. Create New Goal");
-        Console.WriteLine("  2. List Goals");
-        Console.WriteLine("  3. Save Goals");
-        Console.WriteLine("  4. Load Goals");
-        Console.WriteLine("  5. Record Event");
-        Console.WriteLine("  6. Quit");
+        Console.WriteLine("  2. Edit Goal");
+        Console.WriteLine("  3. List Goals");
+        Console.WriteLine("  4. Save Goals");
+        Console.WriteLine("  5. Load Goals");
+        Console.WriteLine("  6. Record Event");
+        Console.WriteLine("  7. Quit");
         Console.Write("Select a choice from the menu: ");
         return Console.ReadLine();
     }
@@ -86,6 +87,12 @@ public class GoalManager {
     }
 
     private void ListGoalNames() {
+
+        if(this._goals.Count == 0) {
+            Console.WriteLine("You have no goals yet.");
+            return;
+        }
+
         Console.WriteLine("The names of Goals are: ");
         for (int i = 0; i < this._goals.Count; i++)
         {
@@ -94,6 +101,12 @@ public class GoalManager {
     }
 
     private void ListGoalDetails() {
+
+        if(_goals.Count == 0) {
+            Console.WriteLine("You have no goals yet.");
+            return;
+        }
+        
         Console.WriteLine("The goals are: ");
         for (int i = 0; i < _goals.Count; i++)
         {
@@ -108,19 +121,19 @@ public class GoalManager {
 
         Goal goalCreated;
     
-        string dataType = GetdataTypeFromUserInput("What type of goal would you like to create? ");
+        int dataType = UserInputHandler.GetIntNumbersFromUserInput("What type of goal would you like to create? ", 1, 3);
         Console.Write("What is the name of your goal? ");
         string goalName = Console.ReadLine();
         Console.Write("What is a short description of it? ");
         string goalDescription = Console.ReadLine();
-        int goalPoints = GetIntNumbersFromUserInput("What is the amount of points associated with this goal? ");
+        int goalPoints = UserInputHandler.GetIntNumbersFromUserInput("What is the amount of points associated with this goal? ");
         
         int target, bonus;
-        if(dataType == "3") {
-            target = GetIntNumbersFromUserInput("How many times does this goal need to be accomplished for a bonus? ");
-            bonus = GetIntNumbersFromUserInput("What is the bonus for accomplishing it many times? ");
+        if(dataType == 3) {
+            target = UserInputHandler.GetIntNumbersFromUserInput("How many times does this goal need to be accomplished for a bonus? ");
+            bonus = UserInputHandler.GetIntNumbersFromUserInput("What is the bonus for accomplishing it many times? ");
             goalCreated = new ChecklistGoal(goalName, goalDescription, goalPoints, target, bonus);
-        } else if(dataType == "2") {
+        } else if(dataType == 2) {
             goalCreated = new EternalGoal(goalName, goalDescription, goalPoints);
         } else { // This means dataType is 1
             goalCreated = new SimpleGoal(goalName, goalDescription, goalPoints);
@@ -135,7 +148,7 @@ public class GoalManager {
         bool isInvalidInput = true;
         int chosenGoalInt;
         do {
-            chosenGoalInt = GetIntNumbersFromUserInput("Which goal did you accomplish? ");
+            chosenGoalInt = UserInputHandler.GetIntNumbersFromUserInput("Which goal did you accomplish? ");
             if (chosenGoalInt > 0 && chosenGoalInt <= _goals.Count) {
                 isInvalidInput = false;                
             } else {
@@ -221,90 +234,29 @@ public class GoalManager {
             }
         }
     }
-    public void SaveGoalsAsJson() {
-        Console.WriteLine("What is the filename for the goal file? ");
-        string filename = Console.ReadLine();
-        
-        string jsonString = JsonSerializer.Serialize<GoalManager>(this);
-        using (StreamWriter outputFile = new StreamWriter(filename + ".json"))
-        {
-            outputFile.WriteLine(jsonString); 
-            Console.WriteLine("All your progress was saved successfully!");
-        }
-        Console.WriteLine(jsonString);
 
-    }
+    private void EditGoal() {
+        ListGoalNames();
 
-    public void LoadGoalsAsJson() {
-        // TODO: Implement this method.
-        Console.WriteLine("What is the filename for the goal file? ");
-        string filename = Console.ReadLine();
-        try
-        {
-            // Obtaining the JSON string
-            string[] lines = System.IO.File.ReadAllLines(filename + ".json");
-            string jsonAsString = "";
-            
-            foreach (string item in lines)
-            {
-                jsonAsString += item;
-            }
-
-            var options = new JsonSerializerOptions();
-            options.Converters.Add(new GoalManagerConverter());
-            GoalManager goalManager = JsonSerializer.Deserialize<GoalManager>(jsonAsString, options);
-            //GoalManager gManagerLoaded = JsonSerializer.Deserialize<GoalManager>(jsonAsString); 
-            this._goals = goalManager._goals;
-            this._score = goalManager._score;
-            Console.WriteLine("All your progress was loaded successfully!");
-            
-        } catch (System.Exception e)
-        {
-            Console.WriteLine("There was an error loading your progress. Please try again.");
-            Console.WriteLine(e.Message);
+        if(this._goals.Count == 0) {
+            return;
         }
 
-
-    }
-
-    private int GetIntNumbersFromUserInput(string questionToUser) {
-        bool isInvalidInput = true;
-        int number;
-        do
-        {
-            Console.Write(questionToUser);
-            string userInput = Console.ReadLine();
-            
-            if(!int.TryParse(userInput, out number)) {
+        Console.Write("Which goal would you like to edit? ");
+        bool isInvalid = true;
+        int chosenGoalInt = 0;
+        do {
+            chosenGoalInt = UserInputHandler.GetIntNumbersFromUserInput("Please enter the number of the goal you would like to edit: ");
+            if(chosenGoalInt > this._goals.Count) {
                 Console.WriteLine("Invalid input. Please try again.");
-                isInvalidInput = true;
-            } else {
-                isInvalidInput = false;
-            }
-
-        } while (isInvalidInput);
-
-        return number;
+                isInvalid = true;
+            } else isInvalid = false;
+        } while (isInvalid);
         
-    }
+        Goal chosenGoal = this._goals[chosenGoalInt - 1];
+        
+        chosenGoal.EditGoal();
+        
 
-    private string GetdataTypeFromUserInput(string qustionToUser) {
-        bool isInvalidInput;
-        string dataType = "";
-        do
-        {
-            Console.Write(qustionToUser);
-            string userInput = Console.ReadLine();
-
-            if(userInput == "1" || userInput == "2" || userInput == "3") {
-                dataType = userInput;
-                isInvalidInput = false;
-            } else {
-                Console.WriteLine("Invalid input. Please try again.");
-                isInvalidInput = true;
-            }
-        } while (isInvalidInput);
-
-        return dataType;
     }
 }
