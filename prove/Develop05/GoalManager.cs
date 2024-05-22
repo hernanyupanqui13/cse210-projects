@@ -2,15 +2,11 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-[Serializable()]
+
 public class GoalManager {
-    [JsonInclude]
     private List<Goal> _goals;
-    [JsonInclude]
     private int _score;
 
-    [JsonConstructor]
-    public GoalManager(List<Goal> goals) {}
     public GoalManager(int initialScore, List<Goal> goals) {
         _goals = goals;
         _score = initialScore;

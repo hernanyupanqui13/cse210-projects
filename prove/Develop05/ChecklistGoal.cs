@@ -1,13 +1,9 @@
 using System.Text.Json.Serialization;
 
-[Serializable()]
 public class ChecklistGoal : Goal
 {
-    [JsonInclude]
     private int _amountCompleted;
-    [JsonInclude]
     private int _target;
-    [JsonInclude]
     private int _bonus;
     
     public ChecklistGoal(string name, string description, int points, int target, int bonus, int amountCompleted) : base(name, description, points) {
