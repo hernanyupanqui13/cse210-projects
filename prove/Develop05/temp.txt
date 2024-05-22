@@ -1,0 +1,4 @@
+30
+Simple Goal:First goal|First goal description|10|True
+Simple Goal:Second goal|Second goal description|20|True
+Simple Goal:Third goal|Third goal description|30|False

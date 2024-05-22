@@ -1,12 +1,14 @@
+using System.Text.Json.Serialization;
+
+[Serializable()]
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int points) : base(name, description, points)
-    {
-
-    }
+    public EternalGoal() {}
+    public EternalGoal(string name, string description, int points) 
+        : base(name, description, points) {}
     public override string GetStringRepresentation()
     {
-        throw new NotImplementedException();
+        return $"Eternal Goal:{this.GetName()}|{this.GetDescription()}|{this.GetPoints()}";
     }
 
     public override bool IsComplete()

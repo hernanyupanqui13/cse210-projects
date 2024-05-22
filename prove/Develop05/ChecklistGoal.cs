@@ -1,9 +1,20 @@
+using System.Text.Json.Serialization;
+
+[Serializable()]
 public class ChecklistGoal : Goal
 {
+    [JsonInclude]
     private int _amountCompleted;
+    [JsonInclude]
     private int _target;
+    [JsonInclude]
     private int _bonus;
-
+    
+    public ChecklistGoal(string name, string description, int points, int target, int bonus, int amountCompleted) : base(name, description, points) {
+        _target = target;
+        _bonus = bonus;
+        _amountCompleted = amountCompleted;
+    }
     public ChecklistGoal(string name, string description, int points, int target, int bonus) : base(name, description, points)
     {
         _target = target;
@@ -13,7 +24,7 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        throw new NotImplementedException();
+        return $"Checklist Goal:{this.GetName()}|{this.GetDescription()}|{this.GetPoints()}|{this._bonus}|{this._target}|{this._amountCompleted}";
     }
 
     public override bool IsComplete()
