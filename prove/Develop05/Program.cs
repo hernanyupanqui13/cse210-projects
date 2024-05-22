@@ -1,7 +1,7 @@
 /*
 - Added a customized message when there are no goals saved or created
 - I added the feature to edit all the types of goals.
-- I created a new class called userInputHandler to reduce the rebundancy when requesting user input
+- I created a new class called userInputHandler to reduce the redundancy when requesting user input
 */
 
 using System;
