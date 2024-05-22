@@ -145,17 +145,8 @@ public class GoalManager {
     private void RecordEvent() {
         ListGoalNames();
         Goal accomplishedGoal;
-        bool isInvalidInput = true;
-        int chosenGoalInt;
-        do {
-            chosenGoalInt = UserInputHandler.GetIntNumbersFromUserInput("Which goal did you accomplish? ");
-            if (chosenGoalInt > 0 && chosenGoalInt <= _goals.Count) {
-                isInvalidInput = false;                
-            } else {
-                Console.WriteLine("Invalid input. Please try again.");
-                isInvalidInput = true;
-            }
-        } while (isInvalidInput);
+        int chosenGoalInt = UserInputHandler.GetIntNumbersFromUserInput("Which goal did you accomplish? "
+            , 1, _goals.Count);
 
         accomplishedGoal = _goals[chosenGoalInt - 1];
         accomplishedGoal.RecordEvent();
@@ -241,22 +232,13 @@ public class GoalManager {
         if(this._goals.Count == 0) {
             return;
         }
-
-        Console.Write("Which goal would you like to edit? ");
-        bool isInvalid = true;
-        int chosenGoalInt = 0;
-        do {
-            chosenGoalInt = UserInputHandler.GetIntNumbersFromUserInput("Please enter the number of the goal you would like to edit: ");
-            if(chosenGoalInt > this._goals.Count) {
-                Console.WriteLine("Invalid input. Please try again.");
-                isInvalid = true;
-            } else isInvalid = false;
-        } while (isInvalid);
+        
+        int chosenGoalInt = UserInputHandler.GetIntNumbersFromUserInput("Please enter the number of the goal you would like to edit: "
+            , 1, this._goals.Count);
         
         Goal chosenGoal = this._goals[chosenGoalInt - 1];
         
         chosenGoal.EditGoal();
         
-
     }
 }
