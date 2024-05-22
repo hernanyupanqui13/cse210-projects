@@ -64,7 +64,7 @@ public class GoalManager {
     }
 
 
-    public string DisplayMenu() {
+    private string DisplayMenu() {
         this.DisplayPlayerInfo();
         Console.WriteLine();
         Console.WriteLine("Menu Options");
@@ -78,7 +78,7 @@ public class GoalManager {
         return Console.ReadLine();
     }
 
-    public void DisplayPlayerInfo() {
+    private void DisplayPlayerInfo() {
         Console.WriteLine($"You have {this._score} points.");
     }
 
@@ -89,7 +89,7 @@ public class GoalManager {
         Console.WriteLine("  3. Checklist Goal");
     }
 
-    public void ListGoalNames() {
+    private void ListGoalNames() {
         Console.WriteLine("The names of Goals are: ");
         for (int i = 0; i < this._goals.Count; i++)
         {
@@ -97,7 +97,7 @@ public class GoalManager {
         }
     }
 
-    public void ListGoalDetails() {
+    private void ListGoalDetails() {
         Console.WriteLine("The goals are: ");
         for (int i = 0; i < _goals.Count; i++)
         {
@@ -107,7 +107,7 @@ public class GoalManager {
         }
     }
 
-    public void CreateGoal() {
+    private void CreateGoal() {
         ListdataTypes();
 
         Goal goalCreated;
@@ -133,7 +133,7 @@ public class GoalManager {
         this._goals.Add(goalCreated);
     }
 
-    public void RecordEvent() {
+    private void RecordEvent() {
         ListGoalNames();
         Goal accomplishedGoal;
         bool isInvalidInput = true;
@@ -151,13 +151,13 @@ public class GoalManager {
         accomplishedGoal = _goals[chosenGoalInt - 1];
         accomplishedGoal.RecordEvent();
         Console.WriteLine();
-        Console.WriteLine($"Congratulations! You have earned {accomplishedGoal.GetPoints()} points!");
-        this._score += accomplishedGoal.GetPoints();
+        Console.WriteLine($"Congratulations! You have earned {accomplishedGoal.GetPointsWhenCompleted()} points!");
+        this._score += accomplishedGoal.GetPointsWhenCompleted();
         Console.WriteLine($"You have now {this._score} points.");
         Console.WriteLine();
     }
 
-    public void SaveGoals() {
+    private void SaveGoals() {
         Console.Write("What is the filename for the goal file? ");
         string filename = Console.ReadLine();
         using (StreamWriter outputFile = new StreamWriter(filename))
@@ -173,7 +173,7 @@ public class GoalManager {
 
     }
 
-    public void LoadGoals() {
+    private void LoadGoals() {
 
         this._goals.Clear();
 
@@ -217,8 +217,8 @@ public class GoalManager {
                 string name = checklistbodyData[0];
                 string description = checklistbodyData[1];
                 int points = int.Parse(checklistbodyData[2]);
-                int target = int.Parse(checklistbodyData[3]);
-                int bonus = int.Parse(checklistbodyData[4]);
+                int bonus = int.Parse(checklistbodyData[3]);
+                int target = int.Parse(checklistbodyData[4]);
                 int current = int.Parse(checklistbodyData[5]);
                 ChecklistGoal goal = new ChecklistGoal(name, description, points, target, bonus, current);
                 this._goals.Add(goal);

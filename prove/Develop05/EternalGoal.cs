@@ -8,7 +8,7 @@ public class EternalGoal : Goal
         : base(name, description, points) {}
     public override string GetStringRepresentation()
     {
-        return $"Eternal Goal:{this.GetName()}|{this.GetDescription()}|{this.GetPoints()}";
+        return $"Eternal Goal:{this.GetName()}|{this.GetDescription()}|{this._points}";
     }
 
     public override bool IsComplete()

@@ -10,7 +10,7 @@ public abstract class Goal {
     [JsonInclude]
     private string _description;
     [JsonInclude]
-    private int _points;
+    protected int _points;
 
     [JsonConstructor]
     protected Goal() {}
@@ -25,7 +25,7 @@ public abstract class Goal {
 
     public abstract bool IsComplete();
 
-    public string GetDetailsString() {
+    public virtual string GetDetailsString() {
         return $"{this._shortName} ({this._description})";
     }
 
@@ -37,7 +37,7 @@ public abstract class Goal {
         return this._description;
     }
 
-    public virtual int GetPoints() {
+    public virtual int GetPointsWhenCompleted() {
         return this._points;
     }
 

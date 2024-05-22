@@ -24,7 +24,7 @@ public class ChecklistGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"Checklist Goal:{this.GetName()}|{this.GetDescription()}|{this.GetPoints()}|{this._bonus}|{this._target}|{this._amountCompleted}";
+        return $"Checklist Goal:{this.GetName()}|{this.GetDescription()}|{this._points}|{this._bonus}|{this._target}|{this._amountCompleted}";
     }
 
     public override bool IsComplete()
@@ -38,9 +38,13 @@ public class ChecklistGoal : Goal
         _amountCompleted++;
     }
 
-    public override int GetPoints()
+    public override int GetPointsWhenCompleted()
     {
-        if(IsComplete()) return base.GetPoints();
-        else return this._bonus;
+        if(IsComplete()) return this._bonus;
+        else return this._points;
+    }
+
+    public override string GetDetailsString() {
+        return $"{base.GetName()} ({base.GetDescription()}) -- Currently completed {this._amountCompleted}/{this._target}";
     }
 }

@@ -1,12 +1,15 @@
+/*
+-Added a way to avoid recwiving porint for the same goal twice.
+- Added a customized emssage when there are no goals saved or created
+*/
+
 using System;
 
 class Program
 {
     static void Main(string[] args)
     {
-        GoalManager gManager = new GoalManager(0, new List<Goal>(){new SimpleGoal("First goal", "First goal description", 10)
-        , new SimpleGoal("Second goal", "Second goal description", 20)
-        , new SimpleGoal("Third goal", "Third goal description", 30)});
+        GoalManager gManager = new GoalManager(0, new List<Goal>());
         gManager.Start();
     }
 }
