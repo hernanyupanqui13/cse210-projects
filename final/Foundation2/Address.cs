@@ -17,6 +17,6 @@ class Address {
     }
 
     public string GetDisplayInformation() {
-        return $"{_street}\n{_city}, {_stateOrProvince}\n{_country}";
+        return $"{_street} \n{_city}, {_stateOrProvince}, {_country}";
     }
 }

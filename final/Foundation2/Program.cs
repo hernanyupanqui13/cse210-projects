@@ -33,8 +33,12 @@ class Program
         Console.WriteLine("----------------");
         Console.WriteLine("Order 1:");
         Console.WriteLine("----------------");
+        Console.WriteLine("Packing:");
+        Console.WriteLine("============");
         Console.WriteLine(order1.GetPackingLabel());
         Console.WriteLine();
+        Console.WriteLine("Shipping:");
+        Console.WriteLine("============");
         Console.WriteLine(order1.GetShippingLabel());
         Console.WriteLine();
         Console.WriteLine($"Total Cost: ${order1.GetTotalCost():F2}");
@@ -43,8 +47,12 @@ class Program
         Console.WriteLine("----------------");
         Console.WriteLine("Order 2:");
         Console.WriteLine("----------------");
+        Console.WriteLine("Packing:");
+        Console.WriteLine("============");
         Console.WriteLine(order2.GetPackingLabel());
         Console.WriteLine();
+        Console.WriteLine("Shipping:");
+        Console.WriteLine("============");
         Console.WriteLine(order2.GetShippingLabel());
         Console.WriteLine();
         Console.WriteLine($"Total Cost: ${order2.GetTotalCost():F2}");

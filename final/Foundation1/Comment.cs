@@ -9,7 +9,7 @@ public class Comment {
     }
 
     public string GetDisplayInformation() {
-        return $"Comment by {_author}: {_textOfComment}";
+        return $"{_author}: {_textOfComment}";
     }
     
 }

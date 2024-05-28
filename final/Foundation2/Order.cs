@@ -20,7 +20,7 @@ class Order {
         string packingLabel = "";
         foreach (Product product in _products)
         {
-           packingLabel += $"{product.GetName()} - {product.GetProductId()}";
+           packingLabel += $"{product.GetProductId()} - {product.GetName()}";
            packingLabel += "\n";
         }
 
@@ -29,12 +29,7 @@ class Order {
 
     public string GetShippingLabel() {
 
-        return "Shipping Details: " + 
-            "\n----------------"+
-            "\nName:" + 
-            $"\n{_customer.GetName()}" + 
-            "\n" +
-            "\nAddress:" +
+        return $"{_customer.GetName()}" + 
             $"\n{_customer.GetAddressAsString()}";
     }
 

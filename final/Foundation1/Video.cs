@@ -24,8 +24,9 @@ public class Video {
 
     public void DisplayAllInformation() {
         Console.WriteLine("------------------------------------------------");
-        Console.WriteLine($"\"{_title}\" by {_author} - {_lenght} seconds | With {this.GetNumberOfComments()} comments.");
+        Console.WriteLine($"\"{_title}\" by {_author} ({_lenght} seconds)");
         Console.WriteLine("------------------------------------------------");
+        Console.WriteLine($"Comments ({this.GetNumberOfComments()})");
         DisplayComments();
     }
 
@@ -33,7 +34,7 @@ public class Video {
         int i = 1;
         foreach (Comment comment in _listOfComments)
         {
-            Console.WriteLine($"{i}. {comment.GetDisplayInformation()}");
+            Console.WriteLine($"> {comment.GetDisplayInformation()}");
             i++;
         }
     }
