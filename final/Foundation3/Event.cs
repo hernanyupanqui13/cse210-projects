@@ -18,7 +18,7 @@ public abstract class Event
 
     public string GetStandardDetails()
     {
-        return $"Title: {_title}\nDescription: {_description}\nDate: {_date.ToShortDateString()}\nTime: {_time}\nAddress: {_address}";
+        return $"Title: {_title}\nDescription: {_description}\nDate: {_date.ToShortDateString()}\nTime: {_time}\nAddress: {_address.GetAsString()}";
     }
 
     public abstract string GetFullDetails();
